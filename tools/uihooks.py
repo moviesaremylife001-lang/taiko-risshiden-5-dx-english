@@ -51,6 +51,14 @@ finds one, it copies the text to a slot of the name ring buffer (texts under 256
 and writes the singular there. Japanese text is unaffected: '1' is never part of a
 Shift-JIS character. Messages and event text are not drawn this way (one text box per
 character): they choose the word themselves (tl.PLURALS, evtl).
+
+ORDER_UNIT: the smith's order messages (msg08@327-330, msg09@227-229; filled by
+0x1405dd8b0, 0x1405ddf3c, 0x1405e0b20, bit 20 of the order flags = cannon) got the item
+name in text slot 0 ({02}yd, ui 143 "Guns" / 1225 "Cannon") and the unit label in slot 1
+({02}zd, ui 64 " guns" / 68 " cannon"). Slot 0 now gets the singular label (" gun", a
+string here, or ui 68), and the English prints {02}od{01}C{FF}{01}, the count word that
+shows slot 0 when the count is 1 and slot 1 otherwise (tl.PLURALS). No other message
+these functions show reads slot 0 (msg08@257 sets its own).
 """
 import os, sys
 
@@ -257,6 +265,14 @@ shr eax, 3
 ret
 """
 
+ORDER_GUN = [(0x1405DDA0A, '48 8b 15 57 bc ab 00'),         # mov rdx, [ui 143] -> lea " gun"
+             (0x1405DDF5A, '48 8b 15 07 b7 ab 00'),
+             (0x1405E0EE1, '48 8b 15 80 87 ab 00')]
+ORDER_CANNON = [(0x1405DDAEB, '48 8b 15 46 dd ab 00', 'mov'),   # [ui 1225] -> [ui 68]
+                (0x1405DDF6F, '48 0f 45 15 c1 d8 ab 00', 'cmovne'),
+                (0x1405E0EEA, '48 0f 45 15 46 a9 ab 00', 'cmovne')]
+ORDER_CANNON_VAR = 0x141099410    # char* variable holding ui 68 " cannon"
+
 # after the four pushes: names.py hooks the entry (set_text) and returns here
 COUNT_SITE = (0x140694517, '48 83 ec 38 48 8b e9')     # sub rsp, 0x38; mov rbp, rcx
 COUNT_WORDS = [(b'guns', b'gun'), (b'cannons', b'cannon'), (b'horses', b'horse'),
@@ -443,6 +459,14 @@ def count(seg, ks):
     _patch(seg, ks, at, old, 'jmp 0x%x' % va, pad=False)
     return va
 
+def order_unit(seg, ks):
+    gun = seg.add(b' gun\0')
+    for at, old in ORDER_GUN:
+        _patch(seg, ks, at, old, 'lea rdx, [rip + 0x%x]' % (gun - (at + 7)))
+    for at, old, op in ORDER_CANNON:
+        n = len(bytes.fromhex(old))
+        _patch(seg, ks, at, old, '%s rdx, qword ptr [rip + 0x%x]' % (op, ORDER_CANNON_VAR - (at + n)))
+
 def battle_title(seg, ks):
     import names
     va = seg.add(b'', align=16, share=False)
@@ -512,4 +536,5 @@ def apply(seg):
         _patch(seg, ks, at, seg.exe[o:o + 6].hex(), 'call 0x%x' % va)
     battle_title(seg, ks)
     count(seg, ks)
-    return 10 + len(COLWIDTH)
+    order_unit(seg, ks)
+    return 11 + len(COLWIDTH)

@@ -24,7 +24,8 @@ tl/msgNN.txt holds the English (no Japanese), one block per unit:
   Count words (PLURALS) go after a printed number and agree with it:
   {02}od {01}C{D7}{01} = "1 day" / "5 days"; {01}C{D8}{01} night(s) by {02}o;
   {01}C{D9}{01} day(s) by {02}p; then {DA}-{FA} the other nouns (entry = 471 +
-  index in PLURALS), {FB}-{FE} is/are, was/were (by {02}o, {02}p), it/them (by {02}o).
+  index in PLURALS), {FB}-{FE} is/are, was/were (by {02}o, {02}p), it/them (by {02}o);
+  {FF} the smith's order unit, {02}yd by {02}o = 1, else {02}zd (" gun" / " guns").
   A '%' that is not one of the unit's %-fields becomes full-width ％.
 
 Units are word-wrapped with the advances of the patched font (font.advance_table) to
@@ -154,7 +155,10 @@ PLURALS = [(b'o', b'day', b'days'), (b'o', b'night', b'nights'), (b'p', b'day', 
     (b'p', w, w + b's') for w in (b'cannon', b'gun', b'horse', b'ironclad', b'month', b'ship',
                                   b'soldier', b'tenth', b'troop')] + [
     (b't', b'person', b'people'),
-    (b'o', b'is', b'are'), (b'o', b'was', b'were'), (b'p', b'was', b'were'), (b'o', b'it', b'them')]
+    (b'o', b'is', b'are'), (b'o', b'was', b'were'), (b'p', b'was', b'were'), (b'o', b'it', b'them'),
+    # the smith's order messages (msg08@327-330, msg09@227-229): text slot 0 holds the
+    # singular unit label, slot 1 the plural one (uihooks ORDER_UNIT)
+    (b'o', b'\x02yd', b'\x02zd')]
 
 def plural_code(k):
     i = PLURAL_BASE + k
@@ -208,7 +212,7 @@ def insert_size(code, depth=0):
     if k == 0x25:
         return FIELD_PX, FIELD_CHARS
     if code in PLURAL_CODES:
-        return measure([('text', PLURALS[PLURAL_CODES[code]][2])], depth + 1)
+        return measure(msgscript.tokens(PLURALS[PLURAL_CODES[code]][2]), depth + 1)
     if k == 0x01 and len(code) == 4 and depth < 3:
         b, e = target(code[2], code[3])
         try:
@@ -518,6 +522,12 @@ def check_unit(jp_toks, en):
     if bad:
         errs.append('structural code in English: %s' % ' '.join(code_str(t) for t in bad))
     jc, ec = inline_codes(jp_toks), inline_codes(et)
+    for t in [t for t in ec.elements() if t in PLURAL_CODES]:
+        # the variables a count word shows ({FF}: {02}yd, {02}zd) are used
+        x, one, many = PLURALS[PLURAL_CODES[t]]
+        for k, v in msgscript.tokens(one + many):
+            if k == 'inline' and ec[v] < jc[v]:
+                ec[v] += 1
     for t in (ec - jc).elements():
         if t in PLURAL_CODES:
             continue

@@ -1207,21 +1207,21 @@ Hmm, your order will take\n{02}od more {01}C{D7}{01} to finish.
 @326.1
 Hmm, your order will take\n{02}od more {01}C{D7}{01} to finish.
 @327
-Phew... thanks to your help,\n{02}od{02}zd {01}C{FC}{01} done ahead of schedule.\nHere, take {01}C{FE}{01}.
+Phew... thanks to your help,\n{02}od{01}C{FF}{01} {01}C{FC}{01} done ahead of schedule.\nHere, take {01}C{FE}{01}.
 @327.1
-Phew... thanks to your help,\n{02}od{02}zd {01}C{FC}{01} done ahead of schedule.\nHere you are.
+Phew... thanks to your help,\n{02}od{01}C{FF}{01} {01}C{FC}{01} done ahead of schedule.\nHere you are.
 @328
-Phew... your order,\n{02}od{02}zd, is done.\nHere, take {01}C{FE}{01}.
+Phew... your order,\n{02}od{01}C{FF}{01}, is done.\nHere, take {01}C{FE}{01}.
 @328.1
-Phew... your order,\n{02}od{02}zd, is done.\nHere you are.
+Phew... your order,\n{02}od{01}C{FF}{01}, is done.\nHere you are.
 @329
-Phew... your order,\n{02}od{02}zd, was done early...\nbut it seems it was for nothing.
+Phew... your order,\n{02}od{01}C{FF}{01}, was done early...\nbut it seems it was for nothing.
 @329.1
-Phew... your order,\n{02}od{02}zd, was done early...\nbut it seems it was wasted.
+Phew... your order,\n{02}od{01}C{FF}{01}, was done early...\nbut it seems it was wasted.
 @330
-Phew... your order,\n{02}od{02}zd, is done...\nbut it seems it was for nothing.
+Phew... your order,\n{02}od{01}C{FF}{01}, is done...\nbut it seems it was for nothing.
 @330.1
-Phew... your order,\n{02}od{02}zd, is done...\nbut it seems it was wasted.
+Phew... your order,\n{02}od{01}C{FF}{01}, is done...\nbut it seems it was wasted.
 @331
 Gathered {02}od iron sand.
 @332
