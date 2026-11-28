@@ -20,8 +20,12 @@ ENTRY, CONT = 0x140694510, 0x14069451E
 OBJ, TEXT, STACK_TOP = 0x10010000, 0x20000000, 0x10080000
 
 CASES = [
-    (b'     1men', b'     1man'),                  # "%6u%s" + ui 56 "men"
-    (b'  1500men', None),
+    (b'     1 men', b'     1 man'),                # "%6u%s" + ui 56 " men"
+    (b'  1500 men', None),
+    (b'     1men', b'     1man'),
+    (b'1-1 swords', b'1-1 sword'),                  # "%d-%d%s" (number dialog range)
+    (b'1-10 swords', None),
+    (b' 1 days left', b' 1 day left'),             # ui 3676 "%2d%s left" + ui 74
     (b'Bought 1 horses', b'Bought 1 horse'),        # ui 1414 "Bought %y horses"
     (b'Bought 11 horses', None),
     (b'Bought 21 horses', None),

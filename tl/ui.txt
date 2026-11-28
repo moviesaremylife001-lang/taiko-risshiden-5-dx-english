@@ -45,7 +45,7 @@
 44	%5d kan
 45	%6d kan
 46	%8d kan
-47	koku
+47	 koku
 48	0 koku
 49	%8d koku
 50	,000 koku
@@ -54,25 +54,25 @@
 53	%5d,000 koku
 54	000 koku
 55	%3d000 koku
-56	men
+56	 men
 57	%6d men
 58	%3d,000
-59	head
+59	 head
 60	%d head
 61	%4d head
 62	%6d head
 63	0 head
-64	guns
+64	 guns
 65	%d guns
 66	%4d guns
 67	%6d guns
-68	cannon
+68	 cannon
 69	%d cannon
 70	%4d cannon
 71	%6d cannon
-72	ships
-73	months
-74	days
+72	 ships
+73	 months
+74	 days
 75	Infantry
 76	Cavalry
 77	Gunners
@@ -705,7 +705,7 @@
 748	Oicho-Kabu
 749	Carryover
 750	Pinkoro
-751	pcs
+751	 pcs
 752	How many will you buy?
 753	Hire Bodyguard
 754	Fire Bodyguard
@@ -1545,12 +1545,12 @@
 1588	Chain-Sickle
 1589	Kunai
 1590	Bow
-1591	swords
-1592	spears
-1593	sets
-1594	pcs
-1595	bows
-1596	guns
+1591	 swords
+1592	 spears
+1593	 sets
+1594	 pcs
+1595	 bows
+1596	 guns
 1597	Finish normally
 1598	Give it your all
 1599	Name it
@@ -1662,7 +1662,7 @@
 1705	Enter a name
 1706	Year
 1707	Enter the year of birth
-1708	age
+1708	 age
 1709	Enter the lifespan
 1710	Enter the ambition
 1711	Family Name

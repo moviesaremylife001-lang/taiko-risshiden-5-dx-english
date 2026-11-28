@@ -929,17 +929,17 @@ Hmm...\nThis is...... {02}3g.
 @226.1
 Hmm...\nThis is...... {02}3g.
 @227
-What, it's you...\nThe {02}od {02}yd{02}zd are done.\nHere, take them.
+What, it's you...\nThe {02}od{02}zd are done.\nHere, take them.
 @227.1
-Oh, it's you.\nThe {02}od {02}yd{02}zd are done.\nHere you go.
+Oh, it's you.\nThe {02}od{02}zd are done.\nHere you go.
 @228
-The {02}od {02}yd{02}zd are done.\nHere, take them.
+The {02}od{02}zd are done.\nHere, take them.
 @228.1
-The {02}od {02}yd{02}zd are done.\nHere you go.
+The {02}od{02}zd are done.\nHere you go.
 @229
-Oh, it's you... you're very late.\nThe {02}od {02}yd{02}zd were done long ago...\nlooks like it was for nothing.
+Oh, it's you... you're very late.\nThe {02}od{02}zd were done long ago...\nlooks like it was for nothing.
 @229.1
-Oh, you're very late.\nThe {02}od {02}yd{02}zd were done long ago...\nlooks like it was for nothing.
+Oh, you're very late.\nThe {02}od{02}zd were done long ago...\nlooks like it was for nothing.
 @230
 Oh, it's you...\nSorry, they're not all done yet.\n{02}o{CB} more {01}C{D7}{01}.
 @230.1

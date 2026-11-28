@@ -25,8 +25,8 @@ PATCHES = [
     # leave ASCII there, which it drew as ーーー. test cl, cl; je empty -> jns empty.
     (0x140683280, '74 56', '79 56'),
     # YIELD_UNIT: base panel yield sprintf("%d/%d%s", cur, max, ui 50 千石) gave
-    # "39/100,000 koku"; the %s now takes ui 47 石 "koku" (buffer var 0x141099368) and
-    # exestr 140c5a470 is "%dk/%dk %s" -> "39k/100k koku".
+    # "39/100,000 koku"; the %s now takes ui 47 石 " koku" (buffer var 0x141099368) and
+    # exestr 140c5a470 is "%dk/%dk%s" -> "39k/100k koku".
     (0x14046B76A, '48 8b 1d 0f dc c2 00', '48 8b 1d f7 db c2 00'),
 ]
 

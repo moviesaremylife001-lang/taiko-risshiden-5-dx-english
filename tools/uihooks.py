@@ -41,7 +41,7 @@ per character) gets the width in px / 8 from advance() instead of the length. A 
 name alone must stay under 24 bytes (longest now: 18).
 
 COUNT: "1 guns" -> "1 gun". Program strings are filled by printf, which cannot choose
-between singular and plural ("Bought %y horses", "%6u%s" with the label "men"). Every
+between singular and plural ("Bought %y horses", "%6u%s" with the label " men"). Every
 text box gets its text through 0x140694510 (obj, flags, text, r9b; 242 call sites; the
 printf setters 0x140694440 and 0x140693ea0 end there too), which passes the text on
 to 0x140694820 at once. The hook after its four pushes (names.py set_text hooks the
@@ -269,7 +269,8 @@ COUNT_WORDS = [(b'guns', b'gun'), (b'cannons', b'cannon'), (b'horses', b'horse')
                (b'years', b'year'), (b'turns', b'turn'), (b'times', b'time'), (b'types', b'type'),
                (b'kinds', b'kind'), (b'chips', b'chip'), (b'books', b'book'), (b'shots', b'shot'),
                (b'arrows', b'arrow'), (b'characters', b'character'), (b'cards', b'card'),
-               (b'items', b'item'), (b'pcs', b'pc')]
+               (b'items', b'item'), (b'pcs', b'pc'), (b'swords', b'sword'), (b'spears', b'spear'),
+               (b'sets', b'set'), (b'bows', b'bow')]
 # entry: r8 = text. single(text) -> text, or a ring slot holding the corrected copy.
 # scan(text, apply) -> number of matches (apply: write the singulars in place).
 # Word table: len(plural), len(singular), plural, singular; 0 ends it.
